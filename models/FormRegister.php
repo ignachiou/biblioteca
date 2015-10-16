@@ -11,9 +11,9 @@ class FormRegister extends model{
     public $email;
     public $clave;
     public $repita_clave;
-    public $nombre_usuario;
-    public $apellido_usuario;
-    public $locacion_usuario;
+   // public $nombre_usuario;
+   // public $apellido_usuario;
+    //public $locacion_usuario;
     
     public function rules()
     {

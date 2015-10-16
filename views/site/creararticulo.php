@@ -26,9 +26,34 @@ use app\models\Revista;
  <?= $form->field($model, "autor")->input("text") ?>   
 </div>
 
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "biblio";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+     die("Connection failed: " . $conn->connect_error);
+} 
+
+$sql = "SELECT max(id_revista) FROM revista";
+$result = $conn->query($sql);
+
+
+     // output data of each row
+    // $row = $result;
+     $row = $result->fetch_assoc();
+     echo "<br> id: ". $row["max(id_revista)"].  "<br>";
+
+
+?>
+
 <div class="form-group">
- <?= $form->field($model, "id_revista")->dropDownList(
- 		ArrayHelper::map(Revista::find()->all(),'id_revista','id_revista')
+ <?= $form->field($model, "id_revista")->
+ dropDownList( 		ArrayHelper::map(Revista::find()->all(),'id_revista','id_revista')
  		//ArrayHelper::map(Revista::find()->all(), 'id_revista', MAX(array ('id_revista')))
  		//['prompt'=>'agarra Revista']
  		)

@@ -42,7 +42,15 @@ class SiteController extends Controller
 	
 	public function actionMostrar()
 	{	
-		$posts[1] = 'prueba numero 1';
+		$msg = null;
+		$dirname = "C:/xampp/htdocs/basic/imagenes/monografias/11/";
+		$images = glob($dirname."*.jpg");
+		foreach($images as $image) {
+			echo '<img src="'.$image.'" /><br />';
+		}
+		
+		
+		/*$posts[1] = 'prueba numero 1';
 		$msg = null;
 		
 		if(dirname("C:/xampp/htdocs/basic/imagenes/56/1.jpg"))
@@ -63,9 +71,9 @@ class SiteController extends Controller
 		else 
 		{
 			$msg = "la carpeta a la que quiere acceder no existe";
-		}
+		}*/
 	
-		return $this->render("mostrar",["msg" => $msg],array('post'=>$post,'timg'=>$url), TRUE);
+		return $this->render("mostrar",["msg" => $msg]);
 	}
 	
 	public function actionUpload()
@@ -1378,7 +1386,7 @@ public function actionEliminarusuario()
 				$table->lengua = $model->lengua;
 				$table->tema = $model->tema;
 				$table->resumen = $model->resumen;
-				$table->url = 'C:/xampp/htdocs/basic/imagenes/monografias/';
+				$table->url = 'C:/xampp/htdocs/basic/web/imagenes/monografias/';
 				$table->isbn = $model->isbn;
 				$table->desc1 = $model->descriptor_a;
 				$table->desc2 = $model->descriptor_b;
@@ -1409,20 +1417,20 @@ public function actionEliminarusuario()
 					
 					
 					
-					if (!is_dir('C:/xampp/htdocs/basic/imagenes/monografias/'.$id))  // creo directorios dentro de imagenes con la id
+					if (!is_dir('C:/xampp/htdocs/basic/web/imagenes/monografias/'.$id))  // creo directorios dentro de imagenes con la id
 					{													// del OB donde guardare las imagenes.
 					
-					mkdir('C:/xampp/htdocs/basic/imagenes/monografias/'.$id, 777);//le otorgo permiso de lectura y escritura
+					mkdir('C:/xampp/htdocs/basic/web/imagenes/monografias/'.$id, 777);//le otorgo permiso de lectura y escritura
 				
 											
 					}
 					
-					if($model->img && is_dir('C:/xampp/htdocs/basic/imagenes/monografias/'.$id))
+					if($model->img && is_dir('C:/xampp/htdocs/basic/web/imagenes/monografias/'.$id))
 					{ //pendiente error al validar el modelo de las imagenes
 					
 						foreach ($model->img as $img)
 						{
-							$img->saveAs('C:/xampp/htdocs/basic/imagenes/monografias/'.$id."/". $img->baseName . '.' . $img->extension);
+							$img->saveAs('C:/xampp/htdocs/basic/web/imagenes/monografias/'.$id."/". $img->baseName . '.' . $img->extension);
 							//$msg = "<p><strong class='label label-info'>subida de archivos lograda con exito</strong></p>";
 							
 							
@@ -1494,11 +1502,11 @@ public function behaviors() //funcion de control de roles
     return [
         'access' => [
             'class' => AccessControl::className(),
-            'only' => ['logout',  'crear', 'registros', 'admin', 'editarusuario','creartesis','registrostesis','','registrosrevista','crearrevista','actualizarrevista','aaaaa'],
+            'only' => ['logout','mostrar','viewer', 'crear', 'registros', 'admin', 'editarusuario','creartesis','registrostesis','','registrosrevista','crearrevista','actualizarrevista','aaaaa'],
             'rules' => [
                 [
                     //El administrador tiene permisos sobre las siguientes acciones
-                    'actions' => ['logout','admin', 'editarusuario', 'registros','crear','creartesis','registrostesis','','registrosrevista','actualizarrevista','crearrevista','aaaaa'],
+                    'actions' => ['logout','admin', 'viewer', 'editarusuario','mostrar', 'registros','crear','creartesis','registrostesis','','registrosrevista','actualizarrevista','crearrevista','aaaaa'],
                     //Esta propiedad establece que tiene permisos
                     'allow' => true,
                     //Usuarios autenticados, el signo ? es para invitados

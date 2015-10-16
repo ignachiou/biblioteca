@@ -23,7 +23,7 @@ public function rules()
  {
   return [
    ['id_articulo', 'integer', 'message' => 'Id incorrecto'],
-   [['id_revista'],'safe'],
+   
    ['titulo_articulo', 'required', 'message' => 'Campo requerido'],
    ['titulo_articulo', 'match', 'pattern' => '/^[0-9a-záéíóúñ\s]+$/i', 'message' => 'Solo se aceptan letras'],
    ['titulo_articulo', 'match', 'pattern' => '/^.{3,50}$/', 'message' => 'Mínimo 3 máximo 50 caracteres'],
@@ -59,7 +59,7 @@ public function rules()
  }
  public function attributeLabels()
  {
- 	return ['id_revista' => 'Id REVISTA',
+ 	return [
  			'img' => 'Seleccionar imagenes en formato .jpg .gif o .png:',
  	];
  }

@@ -13,7 +13,57 @@ class Articulo extends ActiveRecord{
         return Yii::$app->db;
     }
     
-   // public static function getLastId(){
+    public static function getLastId(){
+    	
+    	$id = null;
+    	
+    	$servername = "localhost";
+    	$username = "root";
+    	$password = "";
+    	$dbname = "biblio";
+    	
+    	// se crea la conexion con la BD
+    	$conn = Yii::$app->db;//new mysqli($servername, $username, $password, $dbname);
+    	// chequeamos que exista conexion
+    	/*if ($conn->c) {
+    		die("Connection failed: " . $conn->connect_error);
+    	}*/
+    	$query = "SELECT max(id_revista) FROM revista";
+    	
+    	
+    	 $model1 = $table->findBySql($query)->one();
+    	//$conn->createCommand($sql, $id)->queryAll();
+    	
+    	//$sql = "SELECT max(id_revista) FROM revista";
+    	//$result = $conn;
+    	//$row = $result;
+    	
+    	// $row = $result;
+    	//$id = var_dump($row);
+    	
+    	//$id = $id[$row];
+    		 
+    		//echo "<br> id: ". $id[$row] .  "<br>";
+    		 
+    	
+    	
+    	/*if ($result->num_rows > 0) {
+    		// output data of each row
+    		// $row = $result;
+    		while($row = $result->fetch_assoc()) {
+    	
+    	
+    			echo "<br> id: ". $id = $row["max(id_revista)"].  "<br>";
+    			
+    			return $id;
+    		}
+    	} else {
+    		echo "0 results";
+    	}*/
+    	
+    	
+    	return $model1;
+    	mysqli_close($conn);
     	
     	//$id =null;
     
@@ -31,7 +81,8 @@ class Articulo extends ActiveRecord{
    			//return $id;
  		
     	
-    	//$dns = 'mysql:host=localhost;dbname=biblio';
+    	//$dns = 'mysql:host=localhost;
+    	//dbname=biblio';
         //$username = 'root';
         //$paswoord = '';
     	
@@ -47,7 +98,7 @@ class Articulo extends ActiveRecord{
     	//Yii::$app->db->getLastInsertID('revista');
     	//return $lastId;
     	
-   // }
+    }
     
     public static function tableName()
     {

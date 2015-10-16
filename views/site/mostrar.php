@@ -3,7 +3,9 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 ?>
+<img src="../web/imagenes/monografias/13/biblioteca-digital-mundial.jpg" alt="Photograph of a chocolate cupcake.">
 
+s
 <table>
  <tr>
 <?php
@@ -12,7 +14,7 @@ header('Content-type: text/html; charset=utf-8');
 # (CC) Alfonso Saavedra "Son Link"
 # Bajo GPLv3
  
-$path = 'C:/xampp/htdocs/basic/imagenes/58'; # Directorio donde están las imágenes
+$path = '../web/imagenes/monografias/13/'; # Directorio donde están las imágenes
 $limit = 4; # Cuantas imágenes se mostraran por pagina
 $limit_file = 2; # Imágenes a mostrar por linea en la tabla
 $n = 0;
@@ -71,7 +73,7 @@ if (is_dir($path)){
 for ($p = 0; $p<$paginas; $p++){
  $pg = $p+1;
  if ($p == $desde){
-  echo "$pg ";
+  echo "pagina $pg ";
  }else{
   echo "<a href ='?pg=$p'>$pg</a> ";
  } 
